@@ -23,8 +23,8 @@ class Club(models.Model):
 	numMembers = models.IntegerField(default=0,verbose_name="Number of Active Members")
 	clubPurpose = models.TextField(default="",max_length=256,verbose_name="Club's Purpose")
 	clubClass = models.IntegerField(max_length=2,choices=ClubOptions,default=1,verbose_name="Club Class")
-	def __str__(self):
-		return self.shortName
+	# def __str__(self):
+	# 	return self.shortName
 
 
 requestTypeOptions = ((1, 'Funding Request'),(2, 'Sponsorship'))
@@ -33,12 +33,13 @@ class Funding(models.Model):
     """
     Description: Model Description
     """
-    requestinfo = models.TextField(max_length=512,verbose_name="Event Summary")
+    requestinfo = models.TextField(max_length=512,verbose_name="Event Summary",default="")
+    requestName = models.CharField(max_length=256, verbose_name="Event Name")
     requestNumber = models.AutoField(primary_key=True)
 
 
 class Request(models.Model):
-    requestNumber=models.ForeignKey(Funding)
+    requestNumber = models.ForeignKey(Funding)
     requestAmount = models.FloatField()
     requestDescription = models.TextField()
     outcome = models.TextField()

@@ -5,7 +5,7 @@ from . import views
 urlpatterns = patterns('',
     url(r'^$', views.allClubs),
     url(r'^club/(?P<num>\d+)$', views.display_club),
-    url(r'^stat/$', views.returnStat),
+    url(r'^request/(?P<num>\d+)$', views.display_request),
 
 )
 
