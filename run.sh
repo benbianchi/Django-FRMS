@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./manage.py runserver 8000
+./manage.py runserver localhost:9999

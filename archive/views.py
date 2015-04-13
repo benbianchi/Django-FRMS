@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from .models import Club, Budget, Request, Funding
+from .models import Club, Budget, Request, Event
 from django.views.generic import TemplateView
 from django.db.models import Sum
 import random
@@ -41,25 +41,8 @@ def display_club(request,num="1"):
 	return render(request, 'archive/assemble_club.html',{'package':package})
 
 
-
-# class Request(models.Model):
-#     requestNumber=models.ForeignKey(Funding)
-#     requestAmount = models.FloatField()
-#     requestDescription = models.TextField()
-#     outcome = models.TextField()
-#     reviewDate = models.DateField()
-#     requestType = models.IntegerField(choices=requestTypeOptions,default=1)
-#     clubID = models.ForeignKey('Club')
-# class Funding(models.Model):
-#     """
-#     Description: Model Description
-#     """
-#     requestName = models.CharField(max_length=256, verbose_name="Event Name")
-#     requestinfo = models.TextField(max_length=512,verbose_name="Event Summary")
-#     requestNumber = models.AutoField(primary_key=True)
-
 def display_request(request,num="1"):
-	fdot = get_object_or_404(Funding,requestNumber=num )
+	fdot = get_object_or_404(Event,requestNumber=num )
 	l = Request.objects.filter(requestNumber=num).order_by('requestNumber')
 	chartdata = []
 	for x in l:
@@ -75,3 +58,37 @@ def display_request(request,num="1"):
 	package = {'fdot': fdot,'requests': l,'PieChartData':json.dumps(chartdata) }
 	return render(request, 'archive/assemble_fr.html',{'package':package})
 
+def display_search(request):
+
+	sf = request.META
+	print sf
+	clubs = Club.objects.filter(shortName__icontains=sf)
+	events = Event.objects.filter(EventName__icontains=sf) | Event.objects.filter(Eventinfo__icontains=sf)
+	requests = Request.objects.filter(requestDescription__icontains=sf)
+	return render(request, 'archive/search_results.html',{'clubs':clubs, 'events':events, 'requests':requests})
+
+
+
+#Input: ChartType, filterkeys, filtervalues
+#Output: chartdata, chartoptions
+
+
+from django.http import JsonResponse
+
+def populateChart(request):
+
+	# take all filters and keys use a for loop to iterate through.
+	# unsure how exactly to pass information.
+	data = json.loads(request.body)
+	#okay, now we need to get through all of the filtering.
+	# for filt,key in data['filters']:
+	# 	# apply new filters
+	# 	print Request.objects( **([filt]:key))
+	
+	
+	# l = Request.objects.filter(requestNumber=1).order_by('requestNumber')
+	
+	to_json = {
+	"key1":"value1"
+	}
+	return JsonResponse((to_json))

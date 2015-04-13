@@ -76,12 +76,12 @@
   </nav>
 </div>
 
-<div class="row"><br></div>
+
 
 
 <div class="row">
   <div class="medium-6 small-centered columns">
-    <h1 class="attach-top">Club Readout</h1>
+  
 
   </div>
 
@@ -121,7 +121,7 @@
         </tr>
           {% for o in package.list %}
           <tr>
-          <td><a href=/request/{{o.requestNumber.requestNumber}}>{{o.requestNumber.requestNumber}}</a></td>
+          <td><a href=/request/{{o.requestNumber}}>{{o.requestNumber}}</a></td>
           <td>{{o.reviewDate}}</td>
           <td>${{o.requestAmount}}</td>
           <td>{{o.requestDescription}}</td>
