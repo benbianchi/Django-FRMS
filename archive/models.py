@@ -1,5 +1,6 @@
 from django.db import models
 
+from django.db.models import Sum
 
 # Create your models here.
 
@@ -29,6 +30,15 @@ class Club(models.Model):
 
 requestTypeOptions = ((1, 'Funding Request'),(2, 'Sponsorship'))
 
+class Portion(models.Model):
+    requestNumber = models.ForeignKey('Request')
+    requestAmount = models.FloatField()
+    requestDescription = models.TextField()
+    outcome = models.TextField()
+    reviewDate = models.DateField()
+    requestType = models.IntegerField(choices=requestTypeOptions,default=1)
+    clubID = models.ForeignKey('Club')
+
 class Request(models.Model):
     """
     Description: Model Description
@@ -39,15 +49,11 @@ class Request(models.Model):
     EventDate = models.DateField();
     clubID = models.ForeignKey(Club)
 
+    @property
+    def EventTotalAmount(self):
+        return Portion.objects.filter(requestNumber=self.EventNumber).aggregate(total=Sum("requestAmount"))["total"]
 
-class Portion(models.Model):
-    requestNumber = models.ForeignKey('Request')
-    requestAmount = models.FloatField()
-    requestDescription = models.TextField()
-    outcome = models.TextField()
-    reviewDate = models.DateField()
-    requestType = models.IntegerField(choices=requestTypeOptions,default=1)
-    clubID = models.ForeignKey('Club')
+
         
 class Budget(models.Model):
     """

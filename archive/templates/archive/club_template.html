@@ -55,7 +55,7 @@
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<a href="#">Login</a>
+							<a href="/admin/">Login</a>
 						</li>
 					</ul>
 				</div>
@@ -211,16 +211,16 @@
 				{% for req in requests %}
 					<tr>
 						<td>
-							{{req.EventName}}
+						<a href="/request/{{req.EventNumber}}">{{req.EventName}}</a>
 						</td>
 						<td>
 							{{req.EventTotalAmount}}
 						</td>
 						<td>
-							{{req.EventRequestAmount}}
+							{{req.EventNumber}}
 						</td>
 						<td>
-							{{req.EventDateHeard}}
+							{{req.EventDate}}
 						</td>
 					</tr>
 				{% endfor %}
