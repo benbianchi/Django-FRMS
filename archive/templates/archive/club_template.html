@@ -1,0 +1,331 @@
+{% load staticfiles %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Bootstrap 3, from LayoutIt!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+	<!--script src="js/less-1.3.3.min.js"></script-->
+	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+	
+	<link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+		<link href="{% static  'dist/css/style.css'%}" rel="stylesheet %}">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="img/favicon.png">
+  
+	<script type="text/javascript" src="{% static 'dist/js/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'dist/js/scripts.js' %}"></script>
+</head>
+
+<body>
+
+<nav class="navbar navbar-default " role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="/">FRMS</a>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="/clubs/">Clubs</a>
+						</li>
+						<li>
+							<a href="#">Charts</a>
+						</li>
+					</ul>
+					<form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Search in here!">
+						</div> <button type="submit" class="btn btn-default">Submit</button>
+					</form>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="#">Login</a>
+						</li>
+					</ul>
+				</div>
+				
+			</nav>
+			
+			
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="breadcrumb">
+				<li>
+					<a href="/">FRMS</a> <span class="divider">/</span>
+				</li>
+				<li>
+					<a href="">Clubs</a> <span class="divider">/</span>
+				</li>
+				<li class="active">
+					{{club.shortName}}
+				</li>
+			</ul>
+			<div class="page-header">
+				<h1>
+					{{club.shortName}} <small>{{club.officeAlias}}</small>
+				</h1>
+			</div>
+			<p>
+				{{club.clubPurpose}}
+			</p>
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+				</div>
+			</div>
+</div>	
+    </div>
+    </div>
+    		<div class="container">
+			<div class="carousel slide" id="carousel-809736">
+				<ol class="carousel-indicators">
+					<li class="active" data-slide-to="0" data-target="#carousel-809736">
+					</li>
+					<li data-slide-to="1" data-target="#carousel-809736">
+					</li>
+					<li data-slide-to="2" data-target="#carousel-809736">
+					</li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+						<img alt="" src="http://lorempixel.com/1600/500/sports/1">
+						<div class="carousel-caption">
+							<h4>
+								First Thumbnail label
+							</h4>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+						</div>
+					</div>
+					<div class="item">
+						<img alt="" src="http://lorempixel.com/1600/500/sports/2">
+						<div class="carousel-caption">
+							<h4>
+								Second Thumbnail label
+							</h4>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+						</div>
+					</div>
+					<div class="item">
+						<img alt="" src="http://lorempixel.com/1600/500/sports/3">
+						<div class="carousel-caption">
+							<h4>
+								Third Thumbnail label
+							</h4>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+						</div>
+					</div>
+				</div> <a class="left carousel-control" href="#carousel-809736" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-809736" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+			</div>
+			
+			
+		</div>
+	</div>
+
+	<div class="container" id="tableContainer">
+	<div class="row">
+		<div class="col-md-12 column">
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-4 column">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							Alias
+						</th>
+						<th>
+							Members
+						</th>
+						<th>
+							Purpose
+						</th>
+						<th>
+						Class
+						</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							{{club.officerAlias}}
+						</td>
+						<td>
+							{{club.numMembers}}
+						</td>
+						<td>
+							{{club.clubPurpose}}
+						</td>
+						<td>
+							{{club.clubClass}}
+						</td>
+					</tr>
+					
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-4 column">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							Request
+						</th>
+						<th>
+							Total
+						</th>
+						<th>
+							Requested
+						</th>
+
+						<th>Date</th>
+						<th>
+							
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for req in requests %}
+					<tr>
+						<td>
+							{{req.EventName}}
+						</td>
+						<td>
+							{{req.EventTotalAmount}}
+						</td>
+						<td>
+							{{req.EventRequestAmount}}
+						</td>
+						<td>
+							{{req.EventDateHeard}}
+						</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-4 column">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							Year
+						</th>
+						<th>
+							Amount
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for b in budgets%}
+					<tr>
+						<td>
+							{{ b.year}}
+						</td>
+						<td>
+							{{ b.budgetAmount }}
+						</td>
+						<td>
+							Average of Funding Requests
+						</td>
+						<td>
+							Vanilla
+						</td>
+						{% endfor %}
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+		</div>
+	</div>
+	<div class="row"></div>
+	<div class="row clearfix">
+		<div class="col-xs-8 column" id="LeftFooter">
+			<dl class="dl-horizontal">
+				<dt>
+					Description lists
+				</dt>
+				<dd>
+					A description list is perfect for defining terms.
+				</dd>
+				<dt>
+					Euismod
+				</dt>
+				<dd>
+					Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
+				</dd>
+				<dd>
+					Donec id elit non mi porta gravida at eget metus.
+				</dd>
+				<dt>
+					Malesuada porta
+				</dt>
+				<dd>
+					Etiam porta sem malesuada magna mollis euismod.
+				</dd>
+				<dt>
+					Felis euismod semper eget lacinia
+				</dt>
+				<dd>
+					Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+				</dd>
+			</dl>
+		</div>
+		<div class="col-xs-4 column" id="RightFooter">
+			<ul class="list-unstyled">
+				<li>
+					Lorem ipsum dolor sit amet
+				</li>
+				<li>
+					Consectetur adipiscing elit
+				</li>
+				<li>
+					Integer molestie lorem at massa
+				</li>
+				<li>
+					Facilisis in pretium nisl aliquet
+				</li>
+				<li>
+					Nulla volutpat aliquam velit
+				</li>
+				<li>
+					Faucibus porta lacus fringilla vel
+				</li>
+				<li>
+					Aenean sit amet erat nunc
+				</li>
+				<li>
+					Eget porttitor lorem
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>

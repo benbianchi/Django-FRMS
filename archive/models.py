@@ -29,24 +29,26 @@ class Club(models.Model):
 
 requestTypeOptions = ((1, 'Funding Request'),(2, 'Sponsorship'))
 
-class Event(models.Model):
+class Request(models.Model):
     """
     Description: Model Description
     """
-    Eventinfo = models.TextField(max_length=512,verbose_name="Event Summary",default="")
-    EventName = models.CharField(max_length=256, verbose_name="Event Name")
+    Eventinfo = models.TextField(max_length=512,verbose_name="Request Summary",default="")
+    EventName = models.CharField(max_length=256, verbose_name="Request Name")
     EventNumber = models.AutoField(primary_key=True)
+    EventDate = models.DateField();
+    clubID = models.ForeignKey(Club)
 
 
-class Request(models.Model):
-    requestNumber = models.ForeignKey(Event)
+class Portion(models.Model):
+    requestNumber = models.ForeignKey('Request')
     requestAmount = models.FloatField()
     requestDescription = models.TextField()
     outcome = models.TextField()
     reviewDate = models.DateField()
     requestType = models.IntegerField(choices=requestTypeOptions,default=1)
     clubID = models.ForeignKey('Club')
-    
+        
 class Budget(models.Model):
     """
     Description: Model Description

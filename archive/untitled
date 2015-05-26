@@ -1,0 +1,62 @@
+		
+class PieChartNode(object):
+	"""docstring for PieChartNode"""
+	def __init__(self, value,label):
+		super(PieChartNode, self).__init__()
+		self.value = value
+		r = lambda: random.randint(0,255)
+		self.color =('#%02X%02X%02X' % (r(),r(),r()))
+		self.highlight = self.color
+		self.label = label
+
+class PieChart(object):
+	"""docstring for PieChartNode"""
+	def __init__(self, arg):
+		super(PieChartNode, self).__init__()
+		self.arg = arg
+		self.dataSeries = []
+	def query(model,kwargs,kvals):
+		for x in xrange(0,kwargs):
+			model = model.objects.filter(**kwargs[x]=kvals[x])
+		self.dataSeries = model;
+		return self.dataSeries;
+
+
+class LineChart(object):
+	"""docstring for LineChart"""
+	def __init__(self, data,label):
+		super(LineChart, self).__init__()
+		self.data=data
+	def query(model,kwargs,kvals):
+		for x in xrange(0,kwargs):
+			model = model.objects.filter(**kwargs[x]=kvals[x])
+		self.dataSeries = model;
+		return self.dataSeries;
+
+
+
+ class LineChartDataSet(object):
+	"""docstring for LineChartNode"""
+	def __init__(self, label,data):
+		super(LineChartNode, self).__init__()
+		self.label = label;
+		self.data = data;
+
+
+class BarChart(object):
+	"""docstring for BarChart"""
+	def __init__(self, arg):
+		super(BarChart, self).__init__()
+		self.arg = arg
+	def query(model,kwargs,kvals):
+		for x in xrange(0,kwargs):
+			model = model.objects.filter(**kwargs[x]=kvals[x])
+		self.dataSeries = model;
+		return self.dataSeries;
+
+ class BarChartDataSet(object):
+	"""docstring for BarChartDataSet"""
+	def __init__(self, label,data):
+		super(BarChartDataSet, self).__init__()
+		self.label = label;
+		self.data = data;		

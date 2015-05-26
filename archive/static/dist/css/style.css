@@ -1,0 +1,16 @@
+.row
+{
+	margin-bottom:20px;
+}
+
+.clickable:hover
+{
+	color: teal;
+	cursor: pointer;
+	
+}	
+
+.hidden
+{
+	display: none;
+}
