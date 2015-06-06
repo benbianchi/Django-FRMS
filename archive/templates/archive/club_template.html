@@ -14,6 +14,8 @@
 	
 	<link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
 		<link href="{% static  'dist/css/style.css'%}" rel="stylesheet %}">
+		<link href="{% static  'chartist/scss/chartist.css'%}" rel="stylesheet %}">
+		<!-- <link href="{% static  'chartist/scss/chartist.css' }%" rel="stylesheet"> -->
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
@@ -30,6 +32,8 @@
 	<script type="text/javascript" src="{% static 'dist/js/jquery.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'dist/js/bootstrap.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'dist/js/scripts.js' %}"></script>
+	
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 </head>
 
 <body>
@@ -79,6 +83,7 @@
 			</ul>
 			<div class="page-header">
 				<h1>
+				<a href=/admin/archive/club/{{club.clubID}} class="glyphicon glyphicon-edit"></a>
 					{{club.shortName}} <small>{{club.officeAlias}}</small>
 				</h1>
 			</div>
@@ -104,15 +109,32 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="item active">
-						<img alt="" src="http://lorempixel.com/1600/500/sports/1">
-						<div class="carousel-caption">
-							<h4>
-								First Thumbnail label
-							</h4>
-							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-						</div>
+						<div class="ct-chart ct-major-twelfth"></div>
+
+						<script type="text/javascript">
+						var data = {
+    // A labels array that can contain any sort of values
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+    // Our series array that contains series objects or in this case series data arrays
+    series: [
+      [5, 2, 4, 2, 0]
+
+    ]
+
+
+  };
+    var options = {
+    width: 900,
+    height: 200
+  };
+  
+  
+  // Create a new line chart object where as first parameter we pass in a selector
+  // that is resolving to our chart container element. The Second parameter
+  // is the actual data object.
+  new Chartist.Line('.ct-chart', data);
+
+						</script>
 					</div>
 					<div class="item">
 						<img alt="" src="http://lorempixel.com/1600/500/sports/2">

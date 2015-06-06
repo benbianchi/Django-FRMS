@@ -64,3 +64,15 @@ class Budget(models.Model):
     clubID = models.ForeignKey('Club')
 
 
+class Chart(models.Model):
+    """
+    Description: Chart Description
+    """
+    ClubOptions = (
+        (1, 'Line'),
+        (2, 'Pie'),
+        (3, 'Bar'),
+        (4, 'Column'),
+        )
+    chartType = models.IntegerField(choices=chartypeOptions,default=1);
+    chartTitle = models.TextField(max_length=256);

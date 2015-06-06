@@ -14,3 +14,16 @@
 {
 	display: none;
 }
+
+
+.carousel-indicators {
+    bottom: -10px;
+    left: 10%;
+    list-style: outside none none;
+    margin-left: -30%;
+    padding-left: 0;
+    position: absolute;
+    text-align: center;
+    width: 60%;
+    z-index: 15;
+}
