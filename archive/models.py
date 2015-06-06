@@ -68,7 +68,7 @@ class Chart(models.Model):
     """
     Description: Chart Description
     """
-    ClubOptions = (
+    chartypeOptions = (
         (1, 'Line'),
         (2, 'Pie'),
         (3, 'Bar'),
