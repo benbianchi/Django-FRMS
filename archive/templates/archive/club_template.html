@@ -14,7 +14,8 @@
 	
 	<link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
 		<link href="{% static  'dist/css/style.css'%}" rel="stylesheet %}">
-		<link href="{% static  'chartist/scss/chartist.css'%}" rel="stylesheet %}">
+		<link href="{% static  'dist/bower_components/morris.js/morris.css'%}" rel="stylesheet %}">
+
 		<!-- <link href="{% static  'chartist/scss/chartist.css' }%" rel="stylesheet"> -->
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -22,18 +23,12 @@
     <script src="js/html5shiv.js"></script>
   <![endif]-->
 
-  <!-- Fav and touch icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
-  <link rel="shortcut icon" href="img/favicon.png">
   
 	<script type="text/javascript" src="{% static 'dist/js/jquery.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'dist/js/bootstrap.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'dist/js/scripts.js' %}"></script>
-	
-    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script type="text/javascript" src="{% static 'dist/bower_components/morris.js/morris.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dist/bower_components/raphael/raphael.js' %}"></script>
 </head>
 
 <body>
@@ -52,14 +47,21 @@
 							<a href="#">Charts</a>
 						</li>
 					</ul>
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search in here!">
-						</div> <button type="submit" class="btn btn-default">Submit</button>
+					<form class="navbar-form navbar-left" method="GET" action="/search/" role="search">
+						<div classs"form-group">
+							<!-- <input type="text" class="form-control" placeholder="Search in here!"> -->
+						</div> 
+						<!-- <button type="submit" class="btn btn-default">Submit</button> -->
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<a href="/admin/">Login</a>
+							<a href="/admin/">
+							{% if user.is_authenticated %}
+								{{ user.get_username }}
+								{% else %} 
+								Login
+								{% endif %}
+								</a>
 						</li>
 					</ul>
 				</div>
@@ -109,43 +111,46 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="item active">
-						<div class="ct-chart ct-major-twelfth"></div>
-
-						<script type="text/javascript">
-						var data = {
-    // A labels array that can contain any sort of values
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-    // Our series array that contains series objects or in this case series data arrays
-    series: [
-      [5, 2, 4, 2, 0]
-
-    ]
-
-
-  };
-    var options = {
-    width: 900,
-    height: 200
-  };
-  
-  
-  // Create a new line chart object where as first parameter we pass in a selector
-  // that is resolving to our chart container element. The Second parameter
-  // is the actual data object.
-  new Chartist.Line('.ct-chart', data);
-
-						</script>
+						<div id='MorrisChart_TrackingSpendingHistory'></div>
+						
+							<script>
+							new Morris.Line({
+						  	// ID of the element in which to draw the chart.
+						  	element: 'MorrisChart_TrackingSpendingHistory',
+						  	// Chart data records -- each entry in this array corresponds to a point on
+						  	// the chart.
+						  	data: {{ portions | safe }},
+							  // The name of the data record attribute that contains x-values.
+							  xkey: 'reviewDate',
+							  // A list of names of data record attributes that contain y-values.
+							  ykeys:["requestAmount"],
+							  // Labels for the ykeys -- will be displayed when you hover over the
+							  // chart.
+							  labels: ["Payments", "year"],
+							  fillOpacity:0.8
+						});
+							</script>
 					</div>
 					<div class="item">
-						<img alt="" src="http://lorempixel.com/1600/500/sports/2">
-						<div class="carousel-caption">
-							<h4>
-								Second Thumbnail label
-							</h4>
-							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-						</div>
+						<div id='MorrisChart_VsClass'></div>
+						
+							<script>
+							new Morris.Line({
+						  	// ID of the element in which to draw the chart.
+						  	element: 'MorrisChart_VsClass',
+						  	// Chart data records -- each entry in this array corresponds to a point on
+						  	// the chart.
+						  	data: {{ portions | safe }},
+							  // The name of the data record attribute that contains x-values.
+							  xkey: 'clubShort',
+							  // A list of names of data record attributes that contain y-values.
+							  ykeys:["BudgetAmount"],
+							  // Labels for the ykeys -- will be displayed when you hover over the
+							  // chart.
+							  labels: ["Payments", "year"],
+							  fillOpacity:0.8
+						});
+							</script>
 					</div>
 					<div class="item">
 						<img alt="" src="http://lorempixel.com/1600/500/sports/3">
@@ -172,7 +177,8 @@
 	</div>
 	<div class="row clearfix">
 		<div class="col-md-4 column">
-			<table class="table">
+		<label for="MetaData">Club Info</label>
+			<table id="MetaData" class="table">
 				<thead>
 					<tr>
 						<th>
@@ -210,7 +216,8 @@
 			</table>
 		</div>
 		<div class="col-md-4 column">
-			<table class="table">
+		<label for="requestTable">Recorded Requests</label>
+			<table id="requestTable"class="table">
 				<thead>
 					<tr>
 						<th>
@@ -250,7 +257,8 @@
 			</table>
 		</div>
 		<div class="col-md-4 column">
-			<table class="table">
+		<label for="budgetTable">Recorded Budgets</label>
+			<table id="budgetTable" class="table">
 				<thead>
 					<tr>
 						<th>
@@ -269,12 +277,6 @@
 						</td>
 						<td>
 							{{ b.budgetAmount }}
-						</td>
-						<td>
-							Average of Funding Requests
-						</td>
-						<td>
-							Vanilla
 						</td>
 						{% endfor %}
 					</tr>

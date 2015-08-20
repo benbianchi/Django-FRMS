@@ -24,6 +24,7 @@ class Club(models.Model):
 	numMembers = models.IntegerField(default=0,verbose_name="Number of Active Members")
 	clubPurpose = models.TextField(default="",max_length=256,verbose_name="Club's Purpose")
 	clubClass = models.IntegerField(max_length=2,choices=ClubOptions,default=1,verbose_name="Club Class")
+    
 	# def __str__(self):
 	# 	return self.shortName
 
@@ -38,6 +39,10 @@ class Portion(models.Model):
     reviewDate = models.DateField()
     requestType = models.IntegerField(choices=requestTypeOptions,default=1)
     clubID = models.ForeignKey('Club')
+    @property
+    def Date(self):
+        return Request.objects.filter(requestNumber=self.requestNumber).EventDate
+    
 
 class Request(models.Model):
     """

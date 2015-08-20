@@ -2,7 +2,8 @@ from django.shortcuts import get_object_or_404, render
 from .models import Club, Budget, Portion, Request
 from django.views.generic import TemplateView
 from django.db.models import Sum
-import random
+from FRMS_Utils import toList
+from django.core import serializers
 import json
 
 
@@ -19,10 +20,14 @@ def clubList(request):
 def display_club(request,num="1"):
 	num = int(num)
 	club = get_object_or_404(Club,clubID=num)
-	reqlist = Request.objects.filter(clubID_id=num)
+	portlist =list(Portion.objects.filter(clubID_id=num).values('requestAmount','reviewDate')  )
+	reqlist = Request.objects.filter(clubID_id=num);
+	print len(portlist)
+	for x in xrange(0,len(portlist)):
+		portlist[x]['reviewDate']=str(portlist[x]['reviewDate'])
 	budgets = Budget.objects.filter(clubID=num);
 	print "Hello"
-	return render(request, 'archive/club_template.html',{"club":club, "requests":reqlist,"budgets":budgets})
+	return render(request, 'archive/club_template.html',{"club":club, "requests":reqlist, "portions":json.dumps(portlist),"budgets":budgets})
 
 
 def display_request(request,num="1"):
@@ -83,3 +88,18 @@ def populateChart(request):
 	
 	# l = Request.objects.filter(requestNumber=1).order_by('requestNumber')
 	
+
+
+def search(request):
+    query_string = ''
+    found_entries = None
+    if ('q' in request.GET) and request.GET['q'].strip():
+        query_string = request.GET['q']
+        
+        entry_query = get_query(query_string, ['title', 'body',])
+        
+        found_entries = Entry.objects.filter(entry_query).order_by('-pub_date')
+
+    return render('search_results.html',
+                          { 'query_string': query_string, 'found_entries': found_entries },
+                          context_instance=RequestContext(request))

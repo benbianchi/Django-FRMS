@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404, render
 class MorrisChart(object):
 	"""
 	This class is used by FRMS to easily constructed saved charts saved in FRMS.
-	We use Chartist because it is both easy and pretty.
+	We use Morris ecause it is both easy and pretty.
 	"""
 	def __init__(self, title):
 		super(MorrisChart, self).__init__()

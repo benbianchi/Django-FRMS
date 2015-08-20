@@ -9,7 +9,8 @@ urlpatterns = patterns('',
     url(r'^request/(?P<num>\d+)$', views.display_request),
     url(r'^lookup/$', views.display_search),
     url(r'^getChart/$', views.populateChart),
-    url(r'^statistics/$', views.statistics)
+    url(r'^statistics/$', views.statistics),
+    url(r'^search/$', views.search)
 
 )
 
